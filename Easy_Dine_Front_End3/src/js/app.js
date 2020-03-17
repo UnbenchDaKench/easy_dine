@@ -1,3 +1,5 @@
+import './firebase'
+
 // Import Vue
 import Vue from 'vue';
 
@@ -17,7 +19,8 @@ import '../css/app.css';
 // Import App Component
 import App from '../components/app.vue';
 
-import axios from 'axios';
+import {firestorePlugin} from 'vuefire'
+
 import vueComponentDispatchEvent from 'framework7-vue/runtime-helpers/vue-component-dispatch-event';
 
 
@@ -29,22 +32,15 @@ document.addEventListener('deviceready', function () {
 }, false)
 
 //Vue.prototype.$db=firebase.firestore();
-Vue.prototype.$axios = axios;
+//Vue.prototype.$axios = axios;
+Vue.use(firestorePlugin);
 
 // Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyD82kgPUw-d9jiw0cUquhJU0lR05PtEIbI",
-  authDomain: "easy-dine-a0581.firebaseapp.com",
-  databaseURL: "https://easy-dine-a0581.firebaseio.com",
-  projectId: "easy-dine-a0581",
-  storageBucket: "easy-dine-a0581.appspot.com",
-  messagingSenderId: "460232871233",
-  appId: "1:460232871233:web:977a3dbe51addf6cd8e5c0",
-  measurementId: "G-0MSBBLV7VZ"
-};
+
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+
+//firebase.analytics();
+
 // Init App
 new Vue({
   el: '#app',
