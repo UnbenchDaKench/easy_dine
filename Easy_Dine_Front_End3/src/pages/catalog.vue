@@ -4,7 +4,6 @@
     <f7-block>
       <f7-button
         v-if="notLoggedIn"
-        @click="loginOpen"
         login-screen-open="#my-login-screen"
         fill
         raised
@@ -144,6 +143,19 @@ export default {
     };
   },
   created() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.$f7.dialog.alert('logged in');
+        this.loggedIn = true;
+        this.notLoggedIn = false;
+        
+
+      } else {
+        this.$f7.dialog.alert("no user logged in");
+        this.loggedIn = false;
+        this.notLoggedIn = true;
+      }
+    });
     /* var user = firebase.auth().currentUser;
 
     if (user) {
@@ -157,7 +169,7 @@ export default {
   },
 
   methods: {
-    loginOpen() {
+    /* loginOpen() {
       var user = firebase.auth().currentUser;
       //firebase.auth().onAuthStateChanged(function(user){
       if (user) {
@@ -175,16 +187,16 @@ export default {
         this.notLoggedIn = true;
       }
       //});
-      /* users.doc(this.uID).set({
+       users.doc(this.uID).set({
         name: this.name,
         email: this.email,
         username: this.username,
         password: this.password
       });
- */
+    } */
+ 
      
-      
-    },
+    
     login() {
       firebase
         .auth()
@@ -241,14 +253,33 @@ export default {
     onDecode(result) {
       this.result = result;
       var user = firebase.auth().currentUser;
+      this.uID = user.uid;
+      console.log("scan result: ", this.result);
       
       
       if (this.result == "Restaurant A") {
         users.doc(this.uID).collection('restaurants').doc('Restaurant A').set({
-          name: "Restaurant A",
-          address: "123 restaurant steet",
+          name: this.result,
+          address: "123 restaurant street",
           index: 0
         })
+        
+      }
+      else if (this.result == "Restaurant B") {
+        users.doc(this.uID).collection('restaurants').doc('Restaurant B').set({
+          name: this.result,
+          address: "3456 goofy street",
+          index: 1
+        })
+        
+      }
+      else if (this.result == "Restaurant C") {
+        users.doc(this.uID).collection('restaurants').doc('Restaurant C').set({
+          name: this.result,
+          address: "7890 prestige street",
+          index: 2
+        })
+        
       }
       //window.location.replace
     },

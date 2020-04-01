@@ -1,6 +1,8 @@
 <template>
   <f7-page name="home">
-    <f7-navbar title="Restaurants Lists"></f7-navbar>
+    <f7-navbar title="Restaurants Lists">
+      <f7-button fill raised @click="getRests">Reload</f7-button>
+    </f7-navbar>
     <f7-block v-if="notLoggedIn" strong inset>
       <f7-button
         @click="getRests"
@@ -20,10 +22,9 @@
             class="no-border"
             valign="bottom"
             style="background-image:url(src/pages/restaurant A.jpg)"
-            >{{ items.name }}</f7-card-header
-          >
+            >{{ items.name }}
+            </f7-card-header>
           <f7-card-content>
-            <p class="date"></p>
             <p>{{ items.address }}</p>
           </f7-card-content>
           <f7-card-footer>
@@ -32,6 +33,11 @@
           </f7-card-footer>
         </f7-card>
       </span>
+      <div v-if="noRests">
+        <f7-block>
+          <p>You have no Restaurants! Scan a restaurants qr code to add it to your list, then hit reload!</p>
+        </f7-block>
+      </div>
     </div>
 
     <f7-login-screen id="my-login-screen">
@@ -128,21 +134,54 @@ export default {
       uID: "",
       key: "",
       restaurants: [],
+      noRests: false,
       notLoggedIn: true,
       loggedIn: false
     };
   },
   created() {
-    var user = firebase.auth().currentUser;
-
-    if (user) {
+    //var user = firebase.auth().currentUser;
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.email = user.email;
+        this.uID = user.uid;
+        this.loggedIn = true;
+        this.notLoggedIn = false;
+        this.getRests();
+      } else {
+        this.$f7.dialog.alert("no user logged in");
+        this.loggedIn = false;
+        this.notLoggedIn = true;
+      }
+    });
+    /* firebase
+      .auth()
+      .setPersistence(firebase.auth.Auth.Persistence.SESSION)
+      .then(function() {
+        // Existing and future Auth states are now persisted in the current
+        // session only. Closing the window would clear any existing state even
+        // if a user forgets to sign out.
+        // ...
+        // New sign-in will be persisted with session persistence.
+        return firebase.auth().signInWithEmailAndPassword(email, password);
+        this.$f7.dialog.alert('logged in');
+        this.loggedIn = true;
+        this.notLoggedIn = false;
+      })
+      .catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorMessage);
+      }); */
+    /* if (user) {
       this.loggedIn = true;
       this.notLoggedIn = false;
     } else {
       this.$f7.dialog.alert('no user logged in');
       this.loggedIn = false;
       this.notLoggedIn = true;
-    }
+    } */
   },
   firebase: {},
   /* computed() {
@@ -153,7 +192,10 @@ export default {
   methods: {
     async getRests() {
       try {
-        const { docs } = await restaurantsRef.get();
+        const { docs } = await users
+          .doc(this.uID)
+          .collection("restaurants")
+          .get();
 
         this.restaurants = docs.map(doc => {
           const { id } = doc;
@@ -163,6 +205,13 @@ export default {
         console.log("lodaded restaurants", this.restaurants);
       } catch (error) {
         throw new Error("something went wrong");
+      }
+
+      if(this.restaurants.length == 0){
+        this.noRests = true;
+      }
+      else{
+        this.noRests = false;
       }
     },
     login(e) {
@@ -180,7 +229,6 @@ export default {
           }
         );
 
-      
       /* users.add({
         username: this.username,
         password: this.password,
@@ -201,42 +249,35 @@ export default {
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
         .catch(function(err) {
-            this.$f7.dialog.alert(err.message);
-          }
-        );
+          this.$f7.dialog.alert(err.message);
+        });
 
       var user = firebase.auth().currentUser;
       //firebase.auth().onAuthStateChanged(function(user){
-        if (user) {
+      if (user) {
         this.uID = user.uid;
         console.log(this.uID);
         this.email = user.email;
-
-        
       } else {
-       
         this.$f7.dialog.alert("Error Creating Account: " + this.email, () => {
-        this.$f7.loginScreen.close();
-        this.$f7.loginScreen.close();
-      });
+          this.$f7.loginScreen.close();
+          this.$f7.loginScreen.close();
+        });
       }
       //});
       users.doc(this.uID).set({
-              name: this.name,
-              email: this.email,
-              username: this.username,
-              password: this.password,
-              
-            });
-        
-        this.loggedIn = true;
-        this.notLoggedIn = false;
-        this.$f7.dialog.alert("Account created for: " + this.username, () => {
+        name: this.name,
+        email: this.email,
+        username: this.username,
+        password: this.password
+      });
+
+      this.loggedIn = true;
+      this.notLoggedIn = false;
+      this.$f7.dialog.alert("Account created for: " + this.username, () => {
         this.$f7.loginScreen.close();
         this.$f7.loginScreen.close();
       });
-      
-      
     },
     addRestaurant() {
       restaurants.add({

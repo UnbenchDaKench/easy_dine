@@ -16,81 +16,213 @@
     </f7-block>
     <div v-if="showMenu">
       <f7-block-title>Breakfast</f7-block-title>
-      <f7-block>
+
+      <f7-block v-if="chosenA">
         <div v-for="(breakfast, index) in restABreakfast" :key="index">
-          <div v-if="chosenA">
-            <f7-row>
-              <f7-col width="50">
-                <p>{{ breakfast.id }}</p>
-              </f7-col>
-              <f7-col width="50">
-                <p>price: ${{ breakfast.price }}</p>
-                <f7-button
-                  fill
-                  raised
-                  @click="order(breakfast.id, breakfast.price)"
-                  >Order</f7-button
-                >
-              </f7-col>
-            </f7-row>
-          </div>
+          <f7-row>
+            <f7-col width="50">
+              <p>{{ breakfast.id }}</p>
+            </f7-col>
+            <f7-col width="50">
+              <p>price: ${{ breakfast.price }}</p>
+              <f7-button
+                fill
+                raised
+                @click="order(breakfast.id, breakfast.price)"
+                >Order</f7-button
+              >
+            </f7-col>
+          </f7-row>
         </div>
       </f7-block>
+
+      <f7-block v-if="chosenB">
+        <div v-for="(breakfast, index) in restBBreakfast" :key="index">
+          <f7-row>
+            <f7-col width="50">
+              <p>{{ breakfast.id }}</p>
+            </f7-col>
+            <f7-col width="50">
+              <p>price: ${{ breakfast.price }}</p>
+              <f7-button
+                fill
+                raised
+                @click="order(breakfast.id, breakfast.price)"
+                >Order</f7-button
+              >
+            </f7-col>
+          </f7-row>
+        </div>
+      </f7-block>
+
+      <f7-block v-if="chosenC">
+        <div v-for="(breakfast, index) in restCBreakfast" :key="index">
+          <f7-row>
+            <f7-col width="50">
+              <p>{{ breakfast.id }}</p>
+            </f7-col>
+            <f7-col width="50">
+              <p>price: ${{ breakfast.price }}</p>
+              <f7-button
+                fill
+                raised
+                @click="order(breakfast.id, breakfast.price)"
+                >Order</f7-button
+              >
+            </f7-col>
+          </f7-row>
+        </div>
+      </f7-block>
+
       <f7-block-title>Lunch</f7-block-title>
-      <f7-block>
+
+      <f7-block v-if="chosenA">
         <div v-for="(lunch, index) in restALunch" :key="index">
-          <div v-if="chosenA">
-            <f7-row>
-              <f7-col width="50">
-                <p>{{ lunch.id }}</p>
-              </f7-col>
-              <f7-col width="50">
-                <p>price: ${{ lunch.price }}</p>
-                <f7-button fill raised @click="order(lunch.id, lunch.price)"
-                  >Order</f7-button
-                >
-              </f7-col>
-            </f7-row>
-          </div>
+          <f7-row>
+            <f7-col width="50">
+              <p>{{ lunch.id }}</p>
+            </f7-col>
+            <f7-col width="50">
+              <p>price: ${{ lunch.price }}</p>
+              <f7-button fill raised @click="order(lunch.id, lunch.price)"
+                >Order</f7-button
+              >
+            </f7-col>
+          </f7-row>
         </div>
       </f7-block>
+
+      <f7-block v-if="chosenB">
+        <div v-for="(lunch, index) in restBLunch" :key="index">
+          <f7-row>
+            <f7-col width="50">
+              <p>{{ lunch.id }}</p>
+            </f7-col>
+            <f7-col width="50">
+              <p>price: ${{ lunch.price }}</p>
+              <f7-button fill raised @click="order(lunch.id, lunch.price)"
+                >Order</f7-button
+              >
+            </f7-col>
+          </f7-row>
+        </div>
+      </f7-block>
+
+      <f7-block v-if="chosenC">
+        <div v-for="(lunch, index) in restCLunch" :key="index">
+          <f7-row>
+            <f7-col width="50">
+              <p>{{ lunch.id }}</p>
+            </f7-col>
+            <f7-col width="50">
+              <p>price: ${{ lunch.price }}</p>
+              <f7-button fill raised @click="order(lunch.id, lunch.price)"
+                >Order</f7-button
+              >
+            </f7-col>
+          </f7-row>
+        </div>
+      </f7-block>
+
       <f7-block-title>Dinner</f7-block-title>
-      <f7-block>
+
+      <f7-block v-if="chosenA">
         <div v-for="(dinner, index) in restADinner" :key="index">
-          <div v-if="chosenA">
-            <f7-row>
-              <f7-col width="50">
-                <p>{{ dinner.id }}</p>
-              </f7-col>
-              <f7-col width="50">
-                <p>price: ${{ dinner.price }}</p>
-                <f7-button fill raised @click="order(dinner.id, dinner.price)"
-                  >Order</f7-button
-                >
-              </f7-col>
-            </f7-row>
-          </div>
+          <f7-row>
+            <f7-col width="50">
+              <p>{{ dinner.id }}</p>
+            </f7-col>
+            <f7-col width="50">
+              <p>price: ${{ dinner.price }}</p>
+              <f7-button fill raised @click="order(dinner.id, dinner.price)"
+                >Order</f7-button
+              >
+            </f7-col>
+          </f7-row>
         </div>
       </f7-block>
+
+      <f7-block v-if="chosenB">
+        <div v-for="(dinner, index) in restBDinner" :key="index">
+          <f7-row>
+            <f7-col width="50">
+              <p>{{ dinner.id }}</p>
+            </f7-col>
+            <f7-col width="50">
+              <p>price: ${{ dinner.price }}</p>
+              <f7-button fill raised @click="order(dinner.id, dinner.price)"
+                >Order</f7-button
+              >
+            </f7-col>
+          </f7-row>
+        </div>
+      </f7-block>
+
+      <f7-block v-if="chosenC">
+        <div v-for="(dinner, index) in restCDinner" :key="index">
+          <f7-row>
+            <f7-col width="50">
+              <p>{{ dinner.id }}</p>
+            </f7-col>
+            <f7-col width="50">
+              <p>price: ${{ dinner.price }}</p>
+              <f7-button fill raised @click="order(dinner.id, dinner.price)"
+                >Order</f7-button
+              >
+            </f7-col>
+          </f7-row>
+        </div>
+      </f7-block>
+
       <f7-block-title>Drinks</f7-block-title>
-      <f7-block>
+
+      <f7-block v-if="chosenA">
         <div v-for="(drink, index) in restADrinks" :key="index">
-          <div v-if="chosenA">
-            <f7-row>
-              <f7-col width="50">
-                <p>{{ drink.id }}</p>
-              </f7-col>
-              <f7-col width="50">
-                <p>price: ${{ drink.price }}</p>
-                <f7-button fill raised @click="order(drink.id, drink.price)"
-                  >Order</f7-button
-                >
-              </f7-col>
-            </f7-row>
-          </div>
+          <f7-row>
+            <f7-col width="50">
+              <p>{{ drink.id }}</p>
+            </f7-col>
+            <f7-col width="50">
+              <p>price: ${{ drink.price }}</p>
+              <f7-button fill raised @click="order(drink.id, drink.price)"
+                >Order</f7-button
+              >
+            </f7-col>
+          </f7-row>
         </div>
       </f7-block>
-      <span v-for="(menuB, index) in restB" :key="index"></span>
+
+      <f7-block v-if="chosenB">
+        <div v-for="(drink, index) in restBDrinks" :key="index">
+          <f7-row>
+            <f7-col width="50">
+              <p>{{ drink.id }}</p>
+            </f7-col>
+            <f7-col width="50">
+              <p>price: ${{ drink.price }}</p>
+              <f7-button fill raised @click="order(drink.id, drink.price)"
+                >Order</f7-button
+              >
+            </f7-col>
+          </f7-row>
+        </div>
+      </f7-block>
+
+      <f7-block v-if="chosenC">
+        <div v-for="(drink, index) in restCDrinks" :key="index">
+          <f7-row>
+            <f7-col width="50">
+              <p>{{ drink.id }}</p>
+            </f7-col>
+            <f7-col width="50">
+              <p>price: ${{ drink.price }}</p>
+              <f7-button fill raised @click="order(drink.id, drink.price)"
+                >Order</f7-button
+              >
+            </f7-col>
+          </f7-row>
+        </div>
+      </f7-block>
     </div>
     <f7-block></f7-block>
     <f7-popup id="restList">
@@ -122,6 +254,14 @@
               </f7-card>
             </span>
           </f7-block>
+          <div v-if="noRests">
+            <f7-block>
+              <p>
+                You have no Restaurants! Scan a restaurants qr code to add it to
+                your list!
+              </p>
+            </f7-block>
+          </div>
         </f7-page>
       </f7-view>
     </f7-popup>
@@ -166,8 +306,17 @@ import { restaurantABreakfast } from "../js/firebase";
 import { restaurantALunch } from "../js/firebase";
 import { restaurantADinner } from "../js/firebase";
 import { restaurantADrinks } from "../js/firebase";
-import { restaurantBMenu } from "../js/firebase";
+import { restaurantBBreakfast } from "../js/firebase";
+import { restaurantBLunch } from "../js/firebase";
+import { restaurantBDinner } from "../js/firebase";
+import { restaurantBDrinks } from "../js/firebase";
+import { restaurantCBreakfast } from "../js/firebase";
+import { restaurantCLunch } from "../js/firebase";
+import { restaurantCDinner } from "../js/firebase";
+import { restaurantCDrinks } from "../js/firebase";
 import { restAOrders } from "../js/firebase";
+import { restBOrders } from "../js/firebase";
+import { restCOrders } from "../js/firebase";
 import firebase from "firebase";
 export default {
   data() {
@@ -175,13 +324,20 @@ export default {
       notSelected: true,
       selected: false,
       restaurants: [],
-      //curRest: [],
+      noRests: false,
       showMenu: false,
       restABreakfast: [],
       restALunch: [],
       restADinner: [],
       restADrinks: [],
-      restB: [],
+      restBBreakfast: [],
+      restBLunch: [],
+      restBDinner: [],
+      restBDrinks: [],
+      restCBreakfast: [],
+      restCLunch: [],
+      restCDinner: [],
+      restCDrinks: [],
       orders: [],
       userOrders: [],
       orderStarted: {
@@ -191,6 +347,7 @@ export default {
       },
       chosenA: false,
       chosenB: false,
+      chosenC: false,
       name: "",
       username: "",
       uID: "",
@@ -199,11 +356,30 @@ export default {
       itemCount: 0
     };
   },
-
+  created(){
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.email = user.email;
+        this.uID = user.uid;
+        this.$f7.dialog.alert("userID: " + this.uID);
+        
+        
+      } else {
+        this.$f7.dialog.alert("no user logged in");
+        this.loggedIn = false;
+        this.notLoggedIn = true;
+      }
+    });
+  },
   methods: {
     async displayRests() {
+      
+
       try {
-        const { docs } = await restaurantsRef.get();
+        const { docs } = await users
+          .doc(this.uID)
+          .collection("restaurants")
+          .get();
 
         this.restaurants = docs.map(doc => {
           const { id } = doc;
@@ -212,19 +388,36 @@ export default {
         });
         console.log("lodaded restaurants", this.restaurants);
       } catch (error) {
+        console.log(error);
         throw new Error("something went wrong1");
+        
+      }
+
+      if (this.restaurants.length == 0) {
+        this.noRests = true;
+      } else {
+        this.noRests = false;
       }
     },
     async getUser() {
-      var user = firebase.auth().currentUser;
+      //var user = firebase.auth().currentUser;
       var i;
 
-      if (user) {
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          this.email = user.email;
+          this.uID = user.uid;
+        } else {
+          this.$f7.dialog.alert("no user logged in");
+        }
+      });
+
+      /* if (user) {
         this.uID = user.uid;
         console.log(this.uID);
       } else {
         console.log("no user logged in");
-      }
+      } */
 
       try {
         //this.uID eradaymjDHPKxfHPkMjefHBks6z1
@@ -264,9 +457,8 @@ export default {
       var hours = date.getHours();
       var minutes = date.getMinutes();
       var seconds = date.getSeconds();
-      var time =
-        hours + ":" + minutes + ":" + seconds;
-        console.log("order time: ", time)
+      var time = hours + ":" + minutes + ":" + seconds;
+      console.log("order time: ", time);
       if (this.chosenA) {
         this.getUser();
 
@@ -285,12 +477,70 @@ export default {
           user: this.username,
           number: this.itemCount
         });
+      } else if (this.chosenB) {
+        this.getUser();
+
+        var itemName;
+        this.itemCount = this.itemCount + 1;
+        console.log(this.itemCount);
+        itemName = "(" + this.username + ")" + this.itemCount + ". " + item;
+
+        restBOrders.doc(itemName).set({
+          name: item,
+          price: price,
+          date: today,
+          hours: hours,
+          minutes: minutes,
+          seconds: seconds,
+          user: this.username,
+          number: this.itemCount
+        });
+      } else if (this.chosenC) {
+        this.getUser();
+
+        var itemName;
+        this.itemCount = this.itemCount + 1;
+        console.log(this.itemCount);
+        itemName = "(" + this.username + ")" + this.itemCount + ". " + item;
+
+        restCOrders.doc(itemName).set({
+          name: item,
+          price: price,
+          date: today,
+          hours: hours,
+          minutes: minutes,
+          seconds: seconds,
+          user: this.username,
+          number: this.itemCount
+        });
       }
     },
     deleteOrder(id) {
       if (this.chosenA) {
         try {
           restAOrders
+            .doc(id)
+            .delete()
+            .then(function() {
+              console.log("order deleted: ", id);
+            });
+        } catch (error) {
+          throw new error("could not delete order");
+        }
+      } else if (this.chosenB) {
+        try {
+          restBOrders
+            .doc(id)
+            .delete()
+            .then(function() {
+              console.log("order deleted: ", id);
+            });
+        } catch (error) {
+          throw new error("could not delete order");
+        }
+      } else if (this.chosenC) {
+        try {
+          restCOrders
             .doc(id)
             .delete()
             .then(function() {
@@ -319,7 +569,7 @@ export default {
           throw new Error("something went wrong3");
         }
         this.userOrders = [];
-        console.log("user orders before population: ", this.userOrders)
+        console.log("user orders before population: ", this.userOrders);
         /* for (i = 0; i < this.orders.length; i++) {
           if ((this.orders[i].user = this.username)) {
             if(this.orders[i].hours > this.orderStarted.hours){
@@ -339,8 +589,88 @@ export default {
         for (i = 0; i < this.orders.length; i++) {
           if ((this.orders[i].user = this.username)) {
             this.userOrders[i] = this.orders[i];
+          }
         }
-      }
+        console.log("user orders:", this.userOrders);
+      } else if (this.chosenB) {
+        var i;
+        try {
+          const { docs } = await restBOrders.get();
+          console.log("code gets this far 1");
+
+          this.orders = docs.map(doc => {
+            console.log("code gets this far 2");
+            const { id } = doc;
+            const data = doc.data();
+            return { id, ...data };
+          });
+          console.log("current Orders", this.orders);
+        } catch (error) {
+          throw new Error("something went wrong3");
+        }
+        this.userOrders = [];
+        console.log("user orders before population: ", this.userOrders);
+        /* for (i = 0; i < this.orders.length; i++) {
+          if ((this.orders[i].user = this.username)) {
+            if(this.orders[i].hours > this.orderStarted.hours){
+              console.log("hours was greater")
+              this.userOrders[i] = this.orders[i];
+            }
+            else if(this.orders[i].hours == this.orderStarted.hours){
+              console.log("hours was equal")
+              if(this.orders[i].minutes >= this.orderStarted.minutess){
+                console.log("minutes was greater")
+                this.userOrders[i] = this.orders[i];
+                
+              }
+            }
+          }
+        } */
+        for (i = 0; i < this.orders.length; i++) {
+          if ((this.orders[i].user = this.username)) {
+            this.userOrders[i] = this.orders[i];
+          }
+        }
+        console.log("user orders:", this.userOrders);
+      } else if (this.chosenC) {
+        var i;
+        try {
+          const { docs } = await restCOrders.get();
+          console.log("code gets this far 1");
+
+          this.orders = docs.map(doc => {
+            console.log("code gets this far 2");
+            const { id } = doc;
+            const data = doc.data();
+            return { id, ...data };
+          });
+          console.log("current Orders", this.orders);
+        } catch (error) {
+          throw new Error("something went wrong3");
+        }
+        this.userOrders = [];
+        console.log("user orders before population: ", this.userOrders);
+        /* for (i = 0; i < this.orders.length; i++) {
+          if ((this.orders[i].user = this.username)) {
+            if(this.orders[i].hours > this.orderStarted.hours){
+              console.log("hours was greater")
+              this.userOrders[i] = this.orders[i];
+            }
+            else if(this.orders[i].hours == this.orderStarted.hours){
+              console.log("hours was equal")
+              if(this.orders[i].minutes >= this.orderStarted.minutess){
+                console.log("minutes was greater")
+                this.userOrders[i] = this.orders[i];
+                
+              }
+            }
+          }
+        } */
+        for (i = 0; i < this.orders.length; i++) {
+          if ((this.orders[i].user = this.username)) {
+            this.userOrders[i] = this.orders[i];
+          }
+        }
         console.log("user orders:", this.userOrders);
       }
     },
@@ -349,19 +679,17 @@ export default {
       this.notSelected = false;
       this.showMenu = true;
       this.getUser();
-      
+
       //retrieving menu restaurant A
       if (index == 0) {
         this.chosenA = true;
         var date = new Date();
         var time =
           date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-        this.orderStarted.hours = date.getHours;
-        this.orderStarted.minutes = date.getMinutes;
-        this.orderStarted.seconds = date.getSeconds;
-        console.log("current time: ", this.orderStarted)
-
-      
+        this.orderStarted.hours = date.getHours();
+        this.orderStarted.minutes = date.getMinutes();
+        this.orderStarted.seconds = date.getSeconds();
+        console.log("current time: ", this.orderStarted);
 
         try {
           const { docs } = await restaurantABreakfast.get();
@@ -417,18 +745,127 @@ export default {
         }
       } else if (index == 1) {
         this.chosenB = true;
+        var date = new Date();
+        var time =
+          date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+        this.orderStarted.hours = date.getHours();
+        this.orderStarted.minutes = date.getMinutes();
+        this.orderStarted.seconds = date.getSeconds();
+        console.log("current time: ", this.orderStarted);
+
         try {
-          const { docs } = await restaurantBMenu.get();
+          const { docs } = await restaurantBBreakfast.get();
           console.log("code gets this far 1");
-          this.restB = docs.map(doc => {
+          this.restBBreakfast = docs.map(doc => {
             console.log("code gets this far 2");
             const { id } = doc;
             const data = doc.data();
             return { id, ...data };
           });
-          console.log("lodaded menu", this.restB);
+          console.log("breakfast menu", this.restBbreakfast);
         } catch (error) {
-          throw new Error("something went wrong8");
+          throw new Error("something went wrong4");
+        }
+        try {
+          const { docs } = await restaurantBLunch.get();
+          console.log("code gets this far 1");
+          this.restBLunch = docs.map(doc => {
+            console.log("code gets this far 2");
+            const { id } = doc;
+            const data = doc.data();
+            return { id, ...data };
+          });
+          console.log("lunch menu", this.restBLunch);
+        } catch (error) {
+          throw new Error("something went wrong5");
+        }
+        try {
+          const { docs } = await restaurantBDinner.get();
+          console.log("code gets this far 1");
+          this.restBDinner = docs.map(doc => {
+            console.log("code gets this far 2");
+            const { id } = doc;
+            const data = doc.data();
+            return { id, ...data };
+          });
+          console.log("dinner menu", this.restBDinner);
+        } catch (error) {
+          throw new Error("something went wrong6");
+        }
+        try {
+          const { docs } = await restaurantBDrinks.get();
+          console.log("code gets this far 1");
+          this.restBDrinks = docs.map(doc => {
+            console.log("code gets this far 2");
+            const { id } = doc;
+            const data = doc.data();
+            return { id, ...data };
+          });
+          console.log("dinner menu", this.restBDrinks);
+        } catch (error) {
+          throw new Error("something went wrong7");
+        }
+      } else if (index == 2) {
+        this.chosenC = true;
+        var date = new Date();
+        var time =
+          date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+        this.orderStarted.hours = date.getHours();
+        this.orderStarted.minutes = date.getMinutes();
+        this.orderStarted.seconds = date.getSeconds();
+        console.log("current time: ", this.orderStarted);
+
+        try {
+          const { docs } = await restaurantCBreakfast.get();
+          console.log("code gets this far 1");
+          this.restCBreakfast = docs.map(doc => {
+            console.log("code gets this far 2");
+            const { id } = doc;
+            const data = doc.data();
+            return { id, ...data };
+          });
+          console.log("breakfast menu", this.restCbreakfast);
+        } catch (error) {
+          throw new Error("something went wrong4");
+        }
+        try {
+          const { docs } = await restaurantCLunch.get();
+          console.log("code gets this far 1");
+          this.restCLunch = docs.map(doc => {
+            console.log("code gets this far 2");
+            const { id } = doc;
+            const data = doc.data();
+            return { id, ...data };
+          });
+          console.log("lunch menu", this.restCLunch);
+        } catch (error) {
+          throw new Error("something went wrong5");
+        }
+        try {
+          const { docs } = await restaurantCDinner.get();
+          console.log("code gets this far 1");
+          this.restCDinner = docs.map(doc => {
+            console.log("code gets this far 2");
+            const { id } = doc;
+            const data = doc.data();
+            return { id, ...data };
+          });
+          console.log("dinner menu", this.restCDinner);
+        } catch (error) {
+          throw new Error("something went wrong6");
+        }
+        try {
+          const { docs } = await restaurantCDrinks.get();
+          console.log("code gets this far 1");
+          this.restCDrinks = docs.map(doc => {
+            console.log("code gets this far 2");
+            const { id } = doc;
+            const data = doc.data();
+            return { id, ...data };
+          });
+          console.log("dinner menu", this.restCDrinks);
+        } catch (error) {
+          throw new Error("something went wrong7");
         }
       }
     }
