@@ -3,7 +3,7 @@
 
 ## Developers Notes
 
-hey, Abiodun here. Everything writen here is info from me, the rest was automatically generated.
+hey, Abiodun here. Everything written here is info from me, the rest was automatically generated.
 
 because the current version of the app only works in the browser, to run the app first navigate to the easy dine directory in a terminal and run 
 
