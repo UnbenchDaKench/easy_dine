@@ -18,6 +18,11 @@ npm start
 ```
 That should open up a window in your browser with the app. Go to inspect element (should be ctrl + shift + i), and click the toggle device toolbar button in the top left of the window. that way you can view how the app would appear on various devices.
 
+To make use of the scan feature you would have to generate a Qr code with eithr "Restaurant A", "Restaurant B", or "Restaurant C"
+
+website to genrate codes is https://www.qr-code-generator.com/
+just choose the text option and type in one of those options (case sensitive);
+
 you can then make use of the apps fucntions by simply clicking and typing
 
 BUGS:
