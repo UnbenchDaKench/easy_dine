@@ -1,7 +1,8 @@
 <template>
-  <f7-page name="catalog" style="background: none transparent;">
+  <f7-page name="Scan" style="background: none transparent;">
     <f7-navbar title="Restaurant Scanner"></f7-navbar>
     <f7-block>
+      <!-- displays if user is not logged in -->
       <f7-button
         v-if="notLoggedIn"
         login-screen-open="#my-login-screen"
@@ -10,25 +11,18 @@
         >scan</f7-button
       >
     </f7-block>
+    <!-- displays if user is logged in -->
     <f7-block v-if="loggedIn" strong inset>
       <div class="blink">
         <p class="error">{{ error }}</p>
-        
+
         <p class="decode-result">
           Last result: <b>{{ result }}</b>
         </p>
       </div>
       <div class="qr-overlay">
-        <qrcode-stream @decode="onDecode" @onInit="onInit">
-          <!--<f7-button @click="scanCode" fill raised>Scan New Code</f7-button>
-          <f7-button id= "prepare" @click="prepare" fill raised>Prepare</f7-button>
-          <f7-button id= "show" @click="show" fill raised>Show</f7-button>
-          <f7-button id= "scan" @click="scan" fill raised>Scan</f7-button>-->
-        </qrcode-stream>
-        <div>
-           
-          
-        </div>
+        <qrcode-stream @decode="onDecode" @onInit="onInit"> </qrcode-stream>
+        <div></div>
       </div>
     </f7-block>
     <f7-login-screen id="my-login-screen">
@@ -50,8 +44,6 @@
               v-model="password"
               @input="password = $event.target.value"
             ></f7-list-input>
-            <!-- @input="password = $event.target.value" -->
-            <!-- @input="username = $event.target.value" -->
           </f7-list>
           <f7-list>
             <f7-list-button title="login" @click="login"></f7-list-button>
@@ -99,8 +91,6 @@
               v-model="password"
               @input="password = $event.target.value"
             ></f7-list-input>
-            <!-- @input="password = $event.target.value" -->
-            <!-- @input="username = $event.target.value" -->
           </f7-list>
           <f7-list>
             <f7-list-button title="Sign Up!" @click="signUp"></f7-list-button>
@@ -111,7 +101,7 @@
   </f7-page>
 </template>
 <script>
-//var QRScanner = require('QRScanner');
+
 import { QrcodeStream, QrcodeDropZone, QrcodeCapture } from "vue-qrcode-reader";
 import QrcodeVue from "qrcode.vue";
 import firebase from "firebase";
@@ -136,68 +126,29 @@ export default {
       username: "",
       loggedIn: false,
       notLoggedIn: true,
-      size: 200
-      /*myStyle: {
-        backgroundColor: "rgba(0,0,0,0,0.1)"
-      }*/
+      
     };
   },
+  
   created() {
+    //Keeps the user logged in whenever the app loads till they sign out
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        this.$f7.dialog.alert('logged in');
+        
         this.loggedIn = true;
         this.notLoggedIn = false;
-        
-
       } else {
-        this.$f7.dialog.alert("no user logged in");
         this.loggedIn = false;
         this.notLoggedIn = true;
       }
     });
-    /* var user = firebase.auth().currentUser;
-
-    if (user) {
-      this.loggedIn = true;
-      this.notLoggedIn = false;
-    } else {
-      this.$f7.dialog.alert("no user logged in");
-      this.loggedIn = false;
-      this.notLoggedIn = true;
-    } */
+    
   },
 
   methods: {
-    /* loginOpen() {
-      var user = firebase.auth().currentUser;
-      //firebase.auth().onAuthStateChanged(function(user){
-      if (user) {
-        this.uID = user.uid;
-        console.log(this.uID);
-        this.email = user.email;
-        this.loggedIn = true;
-        this.notLoggedIn = false;
-        this.$f7.dialog.alert("User: " + this.email + " is logged in", () => {
-          this.$f7.loginScreen.close();
-        });
-
-      } else {
-        this.loggedIn = false;
-        this.notLoggedIn = true;
-      }
-      //});
-       users.doc(this.uID).set({
-        name: this.name,
-        email: this.email,
-        username: this.username,
-        password: this.password
-      });
-    } */
- 
-     
-    
     login() {
+
+      //signs a user in if they already have an account and they entired the right credentials
       firebase
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
@@ -215,7 +166,34 @@ export default {
       this.notLoggedIn = false;
       this.loggedIn = true;
     },
+    async createUser() {
+      // creates a document in a the user collection based off the user just created with signup
+      firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.email = user.email;
+        this.uID = user.uid;
+        this.loggedIn = true;
+        this.notLoggedIn = false;
+        console.log("userId: ", this.uID)
+        console.log("email: ", this.email)
+        console.log("username: ", this.username)
+        console.log("password: ", this.password)
+        users.doc(this.uID).set({
+          name: this.name,
+          email: this.email,
+          username: this.username,
+          password: this.password
+        });
+        this.getRests();
+      } else {
+        this.loggedIn = false;
+        this.notLoggedIn = true;
+      }
+    });
+      
+    },
     signUp(e) {
+      //creates a new user with an email and password
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
@@ -223,63 +201,60 @@ export default {
           this.$f7.dialog.alert(err.message);
         });
 
-      var user = firebase.auth().currentUser;
-      //firebase.auth().onAuthStateChanged(function(user){
-      if (user) {
-        this.uID = user.uid;
-        console.log(this.uID);
-        this.email = user.email;
-      } else {
-        this.$f7.dialog.alert("Error Creating Account: " + this.email, () => {
-          this.$f7.loginScreen.close();
-          this.$f7.loginScreen.close();
-        });
-      }
-      //});
-      users.doc(this.uID).set({
-        name: this.name,
-        email: this.email,
-        username: this.username,
-        password: this.password
-      });
+      
 
       this.loggedIn = true;
       this.notLoggedIn = false;
-      this.$f7.dialog.alert("Account created for: " + this.username, () => {
+      //saves user info in database 'users' collection
+      this.createUser();
+
+      this.$f7.dialog.alert("Account created for: " + this.email, () => {
         this.$f7.loginScreen.close();
         this.$f7.loginScreen.close();
       });
     },
     onDecode(result) {
+      // function to perform an action when a QR code is scanned
       this.result = result;
       var user = firebase.auth().currentUser;
       this.uID = user.uid;
       console.log("scan result: ", this.result);
-      
-      
+
       if (this.result == "Restaurant A") {
-        users.doc(this.uID).collection('restaurants').doc('Restaurant A').set({
-          name: this.result,
-          address: "123 restaurant street",
-          index: 0
-        })
-        
-      }
-      else if (this.result == "Restaurant B") {
-        users.doc(this.uID).collection('restaurants').doc('Restaurant B').set({
-          name: this.result,
-          address: "3456 goofy street",
-          index: 1
-        })
-        
-      }
-      else if (this.result == "Restaurant C") {
-        users.doc(this.uID).collection('restaurants').doc('Restaurant C').set({
-          name: this.result,
-          address: "7890 prestige street",
-          index: 2
-        })
-        
+        users
+          .doc(this.uID)
+          .collection("restaurants")
+          .doc("Restaurant A")
+          .set({
+            name: this.result,
+            address: "123 restaurant street",
+            index: 0
+          });
+        this.$f7.dialog.alert("Restaurant A added to your restaurant list");
+      } else if (this.result == "Restaurant B") {
+        users
+          .doc(this.uID)
+          .collection("restaurants")
+          .doc("Restaurant B")
+          .set({
+            name: this.result,
+            address: "3456 goofy street",
+            index: 1
+          });
+        this.$f7.dialog.alert("Restaurant B added to your restaurant list");
+      } else if (this.result == "Restaurant C") {
+        users
+          .doc(this.uID)
+          .collection("restaurants")
+          .doc("Restaurant C")
+          .set({
+            name: this.result,
+            address: "7890 prestige street",
+            index: 2
+          });
+        this.$f7.dialog.alert("Restaurant C added to your restaurant list");
+      } else {
+        this.$f7.dialog.alert("That is not a valid QR code! please try again!");
       }
       //window.location.replace
     },
@@ -318,7 +293,8 @@ export default {
       }
     }
   },
-  props: {}
+  
 };
 </script>
-<style scoped></style>
+<style> 
+</style>

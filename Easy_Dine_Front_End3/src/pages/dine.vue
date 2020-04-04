@@ -8,223 +8,239 @@
       </div>
     </f7-navbar>
     <f7-block v-if="notSelected" strong inset>
-      <p>Please scan a restaurant, or selct from the:</p>
-      <!-- <a href='./' class='tab-link' data-route-tab-id='home'>restaurant list</a> -->
-      <f7-button @click="displayRests" popup-open="#restList" fill raised
+      <p>Please slect a restaurant from the:</p>
+
+      <f7-button round @click="displayRests" popup-open="#restList" fill raised
         >Restaurant List</f7-button
       >
     </f7-block>
     <div v-if="showMenu">
+      <!-- shows a restaurants menu if selected -->
       <f7-block-title>Breakfast</f7-block-title>
 
-      <f7-block v-if="chosenA">
-        <div v-for="(breakfast, index) in restABreakfast" :key="index">
+      <f7-block class="menu" v-if="chosenA">
+        <div class="item" v-for="(breakfast, index) in restABreakfast" :key="index">
           <f7-row>
             <f7-col width="50">
-              <p>{{ breakfast.id }}</p>
+              <p class="itemName">{{ breakfast.id }}</p>
             </f7-col>
             <f7-col width="50">
               <p>price: ${{ breakfast.price }}</p>
               <f7-button
                 fill
                 raised
+                round
                 @click="order(breakfast.id, breakfast.price)"
                 >Order</f7-button
               >
             </f7-col>
           </f7-row>
+          <p>---------------------------------------------------------------------------</p>
         </div>
       </f7-block>
 
-      <f7-block v-if="chosenB">
-        <div v-for="(breakfast, index) in restBBreakfast" :key="index">
+      <f7-block class="menu" v-if="chosenB">
+        <div class="item" v-for="(breakfast, index) in restBBreakfast" :key="index">
           <f7-row>
             <f7-col width="50">
-              <p>{{ breakfast.id }}</p>
+              <p class="itemName">{{ breakfast.id }}</p>
             </f7-col>
             <f7-col width="50">
               <p>price: ${{ breakfast.price }}</p>
               <f7-button
                 fill
                 raised
+                round
                 @click="order(breakfast.id, breakfast.price)"
                 >Order</f7-button
               >
             </f7-col>
           </f7-row>
+          <p>---------------------------------------------------------------------------</p>
         </div>
       </f7-block>
 
-      <f7-block v-if="chosenC">
-        <div v-for="(breakfast, index) in restCBreakfast" :key="index">
+      <f7-block class="menu" v-if="chosenC">
+        <div class="item" v-for="(breakfast, index) in restCBreakfast" :key="index">
           <f7-row>
             <f7-col width="50">
-              <p>{{ breakfast.id }}</p>
+              <p class="itemName">{{ breakfast.id }}</p>
             </f7-col>
             <f7-col width="50">
               <p>price: ${{ breakfast.price }}</p>
               <f7-button
                 fill
                 raised
+                round
                 @click="order(breakfast.id, breakfast.price)"
                 >Order</f7-button
               >
             </f7-col>
           </f7-row>
+          <p>---------------------------------------------------------------------------</p>
         </div>
       </f7-block>
 
       <f7-block-title>Lunch</f7-block-title>
 
-      <f7-block v-if="chosenA">
-        <div v-for="(lunch, index) in restALunch" :key="index">
+      <f7-block class="menu" v-if="chosenA">
+        <div class="item" v-for="(lunch, index) in restALunch" :key="index">
           <f7-row>
             <f7-col width="50">
-              <p>{{ lunch.id }}</p>
+              <p class="itemName">{{ lunch.id }}</p>
             </f7-col>
             <f7-col width="50">
               <p>price: ${{ lunch.price }}</p>
-              <f7-button fill raised @click="order(lunch.id, lunch.price)"
+              <f7-button fill raised round @click="order(lunch.id, lunch.price)"
                 >Order</f7-button
               >
             </f7-col>
           </f7-row>
+          <p>---------------------------------------------------------------------------</p>
         </div>
       </f7-block>
 
-      <f7-block v-if="chosenB">
-        <div v-for="(lunch, index) in restBLunch" :key="index">
+      <f7-block class="menu" v-if="chosenB">
+        <div class="item" v-for="(lunch, index) in restBLunch" :key="index">
           <f7-row>
             <f7-col width="50">
-              <p>{{ lunch.id }}</p>
+              <p class="itemName">{{ lunch.id }}</p>
             </f7-col>
             <f7-col width="50">
               <p>price: ${{ lunch.price }}</p>
-              <f7-button fill raised @click="order(lunch.id, lunch.price)"
+              <f7-button fill raised round @click="order(lunch.id, lunch.price)"
                 >Order</f7-button
               >
             </f7-col>
           </f7-row>
+          <p>---------------------------------------------------------------------------</p>
         </div>
       </f7-block>
 
-      <f7-block v-if="chosenC">
-        <div v-for="(lunch, index) in restCLunch" :key="index">
+      <f7-block class="menu" v-if="chosenC">
+        <div class="item" v-for="(lunch, index) in restCLunch" :key="index">
           <f7-row>
             <f7-col width="50">
-              <p>{{ lunch.id }}</p>
+              <p class="itemName">{{ lunch.id }}</p>
             </f7-col>
             <f7-col width="50">
               <p>price: ${{ lunch.price }}</p>
-              <f7-button fill raised @click="order(lunch.id, lunch.price)"
+              <f7-button fill raised round @click="order(lunch.id, lunch.price)"
                 >Order</f7-button
               >
             </f7-col>
           </f7-row>
+          <p>---------------------------------------------------------------------------</p>
         </div>
       </f7-block>
 
       <f7-block-title>Dinner</f7-block-title>
 
-      <f7-block v-if="chosenA">
-        <div v-for="(dinner, index) in restADinner" :key="index">
+      <f7-block class="menu" v-if="chosenA">
+        <div class="item" v-for="(dinner, index) in restADinner" :key="index">
           <f7-row>
             <f7-col width="50">
-              <p>{{ dinner.id }}</p>
+              <p class="itemName">{{ dinner.id }}</p>
             </f7-col>
             <f7-col width="50">
               <p>price: ${{ dinner.price }}</p>
-              <f7-button fill raised @click="order(dinner.id, dinner.price)"
+              <f7-button fill raised round @click="order(dinner.id, dinner.price)"
                 >Order</f7-button
               >
             </f7-col>
           </f7-row>
+          <p>---------------------------------------------------------------------------</p>
         </div>
       </f7-block>
 
-      <f7-block v-if="chosenB">
-        <div v-for="(dinner, index) in restBDinner" :key="index">
+      <f7-block class="menu" v-if="chosenB">
+        <div class="item" v-for="(dinner, index) in restBDinner" :key="index">
           <f7-row>
             <f7-col width="50">
-              <p>{{ dinner.id }}</p>
+              <p class="itemName">{{ dinner.id }}</p>
             </f7-col>
             <f7-col width="50">
               <p>price: ${{ dinner.price }}</p>
-              <f7-button fill raised @click="order(dinner.id, dinner.price)"
+              <f7-button fill raised round @click="order(dinner.id, dinner.price)"
                 >Order</f7-button
               >
             </f7-col>
           </f7-row>
+          <p>---------------------------------------------------------------------------</p>
         </div>
       </f7-block>
 
-      <f7-block v-if="chosenC">
-        <div v-for="(dinner, index) in restCDinner" :key="index">
+      <f7-block class="menu" v-if="chosenC">
+        <div class="item" v-for="(dinner, index) in restCDinner" :key="index">
           <f7-row>
             <f7-col width="50">
-              <p>{{ dinner.id }}</p>
+              <p class="itemName">{{ dinner.id }}</p>
             </f7-col>
             <f7-col width="50">
               <p>price: ${{ dinner.price }}</p>
-              <f7-button fill raised @click="order(dinner.id, dinner.price)"
+              <f7-button fill raised round @click="order(dinner.id, dinner.price)"
                 >Order</f7-button
               >
             </f7-col>
           </f7-row>
+          <p>---------------------------------------------------------------------------</p>
         </div>
       </f7-block>
 
       <f7-block-title>Drinks</f7-block-title>
 
-      <f7-block v-if="chosenA">
-        <div v-for="(drink, index) in restADrinks" :key="index">
+      <f7-block class="menu" v-if="chosenA">
+        <div class="item" v-for="(drink, index) in restADrinks" :key="index">
           <f7-row>
             <f7-col width="50">
-              <p>{{ drink.id }}</p>
+              <p class="itemName">{{ drink.id }}</p>
             </f7-col>
             <f7-col width="50">
               <p>price: ${{ drink.price }}</p>
-              <f7-button fill raised @click="order(drink.id, drink.price)"
+              <f7-button fill raised round @click="order(drink.id, drink.price)"
                 >Order</f7-button
               >
             </f7-col>
           </f7-row>
+          <p>---------------------------------------------------------------------------</p>
         </div>
       </f7-block>
 
-      <f7-block v-if="chosenB">
-        <div v-for="(drink, index) in restBDrinks" :key="index">
+      <f7-block class="menu" v-if="chosenB">
+        <div class="item" v-for="(drink, index) in restBDrinks" :key="index">
           <f7-row>
             <f7-col width="50">
-              <p>{{ drink.id }}</p>
+              <p class="itemName">{{ drink.id }}</p>
             </f7-col>
             <f7-col width="50">
               <p>price: ${{ drink.price }}</p>
-              <f7-button fill raised @click="order(drink.id, drink.price)"
+              <f7-button fill raised round @click="order(drink.id, drink.price)"
                 >Order</f7-button
               >
             </f7-col>
           </f7-row>
+          <p>---------------------------------------------------------------------------</p>
         </div>
       </f7-block>
 
-      <f7-block v-if="chosenC">
-        <div v-for="(drink, index) in restCDrinks" :key="index">
+      <f7-block class="menu" v-if="chosenC">
+        <div class="item" v-for="(drink, index) in restCDrinks" :key="index">
           <f7-row>
             <f7-col width="50">
-              <p>{{ drink.id }}</p>
+              <p class="itemName">{{ drink.id }}</p>
             </f7-col>
             <f7-col width="50">
               <p>price: ${{ drink.price }}</p>
-              <f7-button fill raised @click="order(drink.id, drink.price)"
+              <f7-button fill raised round @click="order(drink.id, drink.price)"
                 >Order</f7-button
               >
             </f7-col>
           </f7-row>
+          <p>---------------------------------------------------------------------------</p>
         </div>
       </f7-block>
     </div>
-    <f7-block></f7-block>
+    
     <f7-popup id="restList">
       <f7-view>
         <f7-page>
@@ -233,20 +249,20 @@
               <f7-link popup-close>Close</f7-link>
             </f7-nav-right>
           </f7-navbar>
-          <f7-block>
+          <f7-block class="container">
             <span v-for="(items, index) in restaurants" :key="index">
-              <f7-card class="demo-card-header-pic">
+              <f7-card class="header">
                 <f7-card-header
-                  class="no-border"
+                  class="title"
                   valign="bottom"
-                  style="background-image:url(src/pages/restaurant A.jpg)"
+                  
                   >{{ index + 1 }}. {{ items.name }}</f7-card-header
                 >
                 <f7-card-content>
-                  <p class="date"></p>
+                  
                   <p>{{ items.address }}</p>
                 </f7-card-content>
-                <f7-card-footer>
+                <f7-card-footer class="footer">
                   <f7-button @click="startOrder(items.index)" popup-close
                     >Start ordering!</f7-button
                   >
@@ -270,11 +286,12 @@
       <f7-view>
         <f7-page>
           <f7-navbar title="Curent Orders">
+            <f7-button fill raised round @click="endOrder">End Order</f7-button>
             <f7-nav-right>
               <f7-link popup-close>Close</f7-link>
             </f7-nav-right>
           </f7-navbar>
-          <span v-for="(items, index) in userOrders" :key="index">
+          <span v-for="(items, index) in orders" :key="index">
             <f7-card class="demo-card-header-pic">
               <f7-card-header
                 class="no-border"
@@ -288,7 +305,7 @@
               </f7-card-content>
               <f7-card-footer>
                 <p>price: {{ items.price }}</p>
-                <f7-button @click="deleteOrder(items.id)" popup-close
+                <f7-button fill raised round @click="deleteOrder(items.id)" popup-close
                   >Delete Order</f7-button
                 >
               </f7-card-footer>
@@ -356,16 +373,12 @@ export default {
       itemCount: 0
     };
   },
-  created(){
+  created() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.email = user.email;
         this.uID = user.uid;
-        this.$f7.dialog.alert("userID: " + this.uID);
-        
-        
       } else {
-        this.$f7.dialog.alert("no user logged in");
         this.loggedIn = false;
         this.notLoggedIn = true;
       }
@@ -373,8 +386,6 @@ export default {
   },
   methods: {
     async displayRests() {
-      
-
       try {
         const { docs } = await users
           .doc(this.uID)
@@ -390,7 +401,6 @@ export default {
       } catch (error) {
         console.log(error);
         throw new Error("something went wrong1");
-        
       }
 
       if (this.restaurants.length == 0) {
@@ -400,8 +410,9 @@ export default {
       }
     },
     async getUser() {
-      //var user = firebase.auth().currentUser;
+      
       var i;
+      var user;
 
       firebase.auth().onAuthStateChanged(user => {
         if (user) {
@@ -412,16 +423,10 @@ export default {
         }
       });
 
-      /* if (user) {
-        this.uID = user.uid;
-        console.log(this.uID);
-      } else {
-        console.log("no user logged in");
-      } */
+      user = this.uID;
+      console.log("current user: ", user);
 
       try {
-        //this.uID eradaymjDHPKxfHPkMjefHBks6z1
-
         const { docs } = await users.get();
 
         this.currentUser = docs.map(doc => {
@@ -431,7 +436,7 @@ export default {
         });
         console.log("current user: ", this.currentUser);
       } catch (error) {
-        console.log(error);
+        console.log(error.message);
         throw new Error("something went wrong2");
       }
 
@@ -515,6 +520,7 @@ export default {
         });
       }
     },
+    //deleting an order from the order list
     deleteOrder(id) {
       if (this.chosenA) {
         try {
@@ -551,6 +557,7 @@ export default {
         }
       }
     },
+    //method for getting current orders
     async orderList() {
       if (this.chosenA) {
         var i;
@@ -570,6 +577,9 @@ export default {
         }
         this.userOrders = [];
         console.log("user orders before population: ", this.userOrders);
+
+        //loop Im working on to get current orders
+
         /* for (i = 0; i < this.orders.length; i++) {
           if ((this.orders[i].user = this.username)) {
             if(this.orders[i].hours > this.orderStarted.hours){
@@ -578,7 +588,7 @@ export default {
             }
             else if(this.orders[i].hours == this.orderStarted.hours){
               console.log("hours was equal")
-              if(this.orders[i].minutes >= this.orderStarted.minutess){
+              if(this.orders[i].minutes >= this.orderStarted.minutes){
                 console.log("minutes was greater")
                 this.userOrders[i] = this.orders[i];
                 
@@ -586,6 +596,7 @@ export default {
             }
           }
         } */
+
         for (i = 0; i < this.orders.length; i++) {
           if ((this.orders[i].user = this.username)) {
             this.userOrders[i] = this.orders[i];
@@ -610,22 +621,7 @@ export default {
         }
         this.userOrders = [];
         console.log("user orders before population: ", this.userOrders);
-        /* for (i = 0; i < this.orders.length; i++) {
-          if ((this.orders[i].user = this.username)) {
-            if(this.orders[i].hours > this.orderStarted.hours){
-              console.log("hours was greater")
-              this.userOrders[i] = this.orders[i];
-            }
-            else if(this.orders[i].hours == this.orderStarted.hours){
-              console.log("hours was equal")
-              if(this.orders[i].minutes >= this.orderStarted.minutess){
-                console.log("minutes was greater")
-                this.userOrders[i] = this.orders[i];
-                
-              }
-            }
-          }
-        } */
+
         for (i = 0; i < this.orders.length; i++) {
           if ((this.orders[i].user = this.username)) {
             this.userOrders[i] = this.orders[i];
@@ -650,22 +646,7 @@ export default {
         }
         this.userOrders = [];
         console.log("user orders before population: ", this.userOrders);
-        /* for (i = 0; i < this.orders.length; i++) {
-          if ((this.orders[i].user = this.username)) {
-            if(this.orders[i].hours > this.orderStarted.hours){
-              console.log("hours was greater")
-              this.userOrders[i] = this.orders[i];
-            }
-            else if(this.orders[i].hours == this.orderStarted.hours){
-              console.log("hours was equal")
-              if(this.orders[i].minutes >= this.orderStarted.minutess){
-                console.log("minutes was greater")
-                this.userOrders[i] = this.orders[i];
-                
-              }
-            }
-          }
-        } */
+
         for (i = 0; i < this.orders.length; i++) {
           if ((this.orders[i].user = this.username)) {
             this.userOrders[i] = this.orders[i];
@@ -674,8 +655,25 @@ export default {
         console.log("user orders:", this.userOrders);
       }
     },
+    //method for calculating subtotal an ending the order
+    async endOrder() {
+      var i;
+      var total = 0.0;
+      this.orderList();
+      console.log(this.orders);
+
+      for (i = 0; i < this.orders.length; i++) {
+        total += this.orders[i].price;
+      }
+      console.log("total: ", total);
+      this.notSelected = true;
+      this.showMenu = false;
+      this.$f7.dialog.alert("Order Total: $" + total);
+      this.$f7.popup.close();
+    },
+    //method for starting the order process
     async startOrder(index) {
-      //var index = this.index;
+      
       this.notSelected = false;
       this.showMenu = true;
       this.getUser();
@@ -743,7 +741,9 @@ export default {
         } catch (error) {
           throw new Error("something went wrong7");
         }
-      } else if (index == 1) {
+      } 
+      //retrieving restaurant b's menu
+      else if (index == 1) {
         this.chosenB = true;
         var date = new Date();
         var time =
@@ -805,7 +805,9 @@ export default {
         } catch (error) {
           throw new Error("something went wrong7");
         }
-      } else if (index == 2) {
+      }
+      //retrieving restaurant c's menu
+      else if (index == 2) {
         this.chosenC = true;
         var date = new Date();
         var time =
@@ -872,3 +874,42 @@ export default {
   }
 };
 </script>
+<style>
+.container {
+  display: table;
+  width: 100%;
+}
+
+.header {
+  border-style: solid;
+  border-color: rgba(194, 56, 56, 0.3);
+  border-width: 2px;
+}
+
+.title {
+  font-size: 16pt;
+  font-weight: bold;
+  background: #f1f1f1;
+}
+.footer {
+  background: #f1f1f1;
+}
+.navbarTitle {
+  font-size: 18pt;
+  font-weight: bold;
+  padding-left: 4px;
+}
+.menu {
+  border-style: groove;
+  border-width: 2px;
+  border-color: rgba(194, 56, 56, 0.3);
+}
+.items {
+  border-style: solid;
+  
+  border-color: maroon;
+}
+.itemName {
+  font-weight: bold;
+}
+</style>

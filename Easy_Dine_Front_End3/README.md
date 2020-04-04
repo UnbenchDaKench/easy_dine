@@ -1,5 +1,33 @@
 # Easy Dine
 
+
+## Developers Notes
+
+hey, Abiodun here. Everything writen here is info from me, the rest was automatically generated.
+
+because the current version of the app only works in the browser, to run the app first navigate to the easy dine directory in a terminal and run 
+
+```
+npm install
+```
+
+then run 
+
+```
+npm start
+```
+That should open up a window in your browser with the app. Go to inspect element (should be ctrl + shift + i), and click the toggle device toolbar button in the top left of the window. that way you can view how the app would appear on various devices.
+
+you can then make use of the apps fucntions by simply clicking and typing
+
+BUGS:
+
+there are a few bugs I'm still working on.
+- The order list currently shows all the orders that have been made by that user that day instead of from that current session
+- Because of the error with the orderlist the subtotal also totals all the orders the user has mad that day
+
+other than that there are just some styling issues i need to figure out
+
 ## Framework7 CLI Options
 
 Framework7 app created with following options:

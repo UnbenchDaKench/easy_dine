@@ -39,5 +39,8 @@ const firebaseConfig = initializeApp({
   //orders by restaurant
   export const restAOrders = db.collection('restaurants').doc('Restaurant A').collection('orders').doc('days list').collection(today);
   export const restBOrders = db.collection('restaurants').doc('Restaurant B').collection('orders').doc('days list').collection(today);
-  export const restCOrders = db.collection('restaurants').doc('Restaurant C').collection('orders').doc('days list').collection(today);  
+  export const restCOrders = db.collection('restaurants').doc('Restaurant C').collection('orders').doc('days list').collection(today);
+  
+  //receipts
+  
 

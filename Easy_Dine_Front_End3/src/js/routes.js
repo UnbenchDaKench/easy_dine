@@ -1,10 +1,10 @@
 
-import HomePage from '../pages/home.vue';
+import RestaurantPage from '../pages/restaurant_list.vue';
 import AboutPage from '../pages/about.vue';
 import FormPage from '../pages/form.vue';
-import CatalogPage from '../pages/catalog.vue';
+import ScanPage from '../pages/scan.vue';
 import ProductPage from '../pages/product.vue';
-import SettingsPage from '../pages/settings.vue';
+import DinePage from '../pages/dine.vue';
 
 import DynamicRoutePage from '../pages/dynamic-route.vue';
 import RequestAndLoad from '../pages/request-and-load.vue';
@@ -13,9 +13,9 @@ import NotFoundPage from '../pages/404.vue';
 
 var routes = [
   {
-    path: '/',
+    path: '/restaurant/',
     id: 'home',
-    component: HomePage,
+    component: RestaurantPage,
   },
   {
     path: '/about/',
@@ -26,16 +26,16 @@ var routes = [
     component: FormPage,
   },
   {
-    path: '/catalog/',
-    component: CatalogPage,
+    path: '/scan/',
+    component: ScanPage,
   },
   {
     path: '/product/:id/',
     component: ProductPage,
   },
   {
-    path: '/settings/',
-    component: SettingsPage,
+    path: '/dine/',
+    component: DinePage,
   },
 
   {
